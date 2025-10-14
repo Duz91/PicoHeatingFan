@@ -5,9 +5,13 @@ from machine import Pin, PWM
 import network
 import umqtt.simple as mqtt
 
-# WLAN-Konfiguration
-WLAN_SSID = "dein_wlan_ssid"
-WLAN_PASSWORT = "dein_wlan_passwort"
+# WLAN-Konfiguration aus lokaler Datei laden, die nicht eingecheckt wird
+try:
+    from wlan_config import WLAN_SSID, WLAN_PASSWORT
+except ImportError:
+    # Platzhalter für Entwicklungszwecke; in wlan_config.py überschreiben
+    WLAN_SSID = "dein_wlan_ssid"
+    WLAN_PASSWORT = "dein_wlan_passwort"
 
 # MQTT-Konfiguration
 MQTT_BROKER = "dein_mqtt_broker"
