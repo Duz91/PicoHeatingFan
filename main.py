@@ -2,7 +2,7 @@ import time
 import machine
 import dht
 from machine import Pin, PWM
-from mqtt_wifi_client import connect_wifi, get_mqtt_client
+from mqtt_client import connect_wifi, get_mqtt_client
 
 # === MQTT Topics ===
 # Eingehend (m, b)
@@ -14,8 +14,8 @@ MQTT_TOPIC_HUM  = b"picofan/output/luftfeuchtigkeit"
 MQTT_TOPIC_DUTY = b"picofan/output/duty_cycle"
 
 # === Startwerte / State ===
-m = 4300.0
-b = -87000.0
+m = 5500.0
+b = -121000.0
 
 # === Hardware ===
 LED = Pin("LED", Pin.OUT)
@@ -114,7 +114,7 @@ def main():
                     print("Sensor-/Regel-Fehler:", repr(se))
                 finally:
                     LED.off()
-                    next_telemetry = time.ticks_add(time.ticks_ms(), 10000)
+                    next_telemetry = time.ticks_add(time.ticks_ms(), 30000)
 
             time.sleep(0.1)
 
